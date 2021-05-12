@@ -30,5 +30,5 @@ logging:
 server:
   port: 18888
 static:
-  img-server: http://localhost:8000
-  video-server: http://localhost:8000
+  img-server: http://192.168.1.8:8000
+  video-server: http://192.168.1.8:9999/hls
