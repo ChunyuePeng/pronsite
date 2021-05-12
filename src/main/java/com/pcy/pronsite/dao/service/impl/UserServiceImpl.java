@@ -30,4 +30,9 @@ public class UserServiceImpl implements UserService {
     public User findByNameAndEmail(String name, String email) {
         return repo.findTopByNameOrEmail(name,email);
     }
+
+    @Override
+    public User findByEmail(String email) {
+        return repo.findTopByEmail(email);
+    }
 }

@@ -5,9 +5,10 @@ package com.pcy.pronsite.util;
  * @author: 彭椿悦
  * @data: 2021/5/11 16:36
  */
-public class Result {
+public class Result<T> {
     private int code;
     private String msg;
+    private T data;
 
     public Result(int code, String msg) {
         this.code = code;
@@ -46,5 +47,14 @@ public class Result {
 
     public void setMsg(String msg) {
         this.msg = msg;
+    }
+
+    public T getData() {
+        return data;
+    }
+
+    public Result setData(T data) {
+        this.data = data;
+        return this;
     }
 }

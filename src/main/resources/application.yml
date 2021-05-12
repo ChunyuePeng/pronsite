@@ -29,3 +29,6 @@ logging:
   config: classpath:log4j2.yml
 server:
   port: 18888
+static:
+  img-server: http://localhost:8000
+  video-server: http://localhost:8000

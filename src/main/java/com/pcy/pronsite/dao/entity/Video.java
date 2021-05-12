@@ -27,6 +27,15 @@ public class Video {
     private String videoPath;
     private String coverImgPath;
     private int uploadUser;
+    private boolean privateVideo;
+
+    public boolean isPrivateVideo() {
+        return privateVideo;
+    }
+
+    public void setPrivateVideo(boolean privateVideo) {
+        this.privateVideo = privateVideo;
+    }
 
     public int getId() {
         return id;

@@ -13,5 +13,7 @@ public interface UserManageService {
      * @param data
      * @return
      */
-    Result addUser(String data);
+    Object addUser(String data);
+
+    Object login(String body);
 }
