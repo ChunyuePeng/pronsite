@@ -1,5 +1,6 @@
 package com.pcy.pronsite.service.impl;
 
+import com.pcy.pronsite.dao.entity.Category;
 import com.pcy.pronsite.dao.entity.User;
 import com.pcy.pronsite.dao.entity.Video;
 import com.pcy.pronsite.dao.service.VideoService;
@@ -7,10 +8,15 @@ import com.pcy.pronsite.service.VideoListService;
 import com.pcy.pronsite.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @description:
@@ -52,7 +58,7 @@ public class VideoListServiceImpl implements VideoListService {
             video.setCoverImgPath(imgServer + video.getCoverImgPath());
             video.setVideoPath(videoServer + video.getVideoPath());
         }
-        return ResponseUtil.ok(videos);
+        return ResponseUtil.okList(videos);
     }
 
     @Override
@@ -61,6 +67,49 @@ public class VideoListServiceImpl implements VideoListService {
         if (video == null) {
             return ResponseUtil.badArgumentValue();
         }
-        return ResponseUtil.ok(videoServer + video.getVideoPath());
+        video.setVideoPath(videoServer + video.getVideoPath());
+        return ResponseUtil.ok(video);
+    }
+
+    @Override
+    public Object getByUserIdAndCategoryId(Integer privateVideo, Integer userId, Integer categoryId, Integer page, Integer size) {
+        if (page == null || size == null) {
+            return ResponseUtil.badArgument();
+        }
+        Video video = new Video();
+        if (privateVideo!=null){
+            if (privateVideo==1){
+                video.setPrivateVideo(privateVideo==1);
+            }
+        }
+        if (userId != null) {
+            video.setUploadUser(userId);
+        }
+        if (categoryId != null) {
+            Category category = new Category();
+            category.setId(categoryId);
+            Set<Category> categories = new HashSet<>(1);
+            categories.add(category);
+            video.setCategories(categories);
+        }
+        Pageable pageable = PageRequest.of(page - 1, size);
+        Example<Video> e = Example.of(video);
+        Page<Video> videos = videoService.getVideos(e, pageable);
+        List<Video> content = videos.getContent();
+        for (Video v : content) {
+            v.setCoverImgPath(imgServer + v.getCoverImgPath());
+            v.setVideoPath(videoServer + v.getVideoPath());
+        }
+        return ResponseUtil.okList(videos);
+    }
+
+    @Override
+    public Object getUserPublicVideos(Integer userId, Integer page, Integer size) {
+        return videoService.getPublicVideosByUser(userId,page,size);
+    }
+
+    @Override
+    public Object getVideosByCategory(Integer categoryId, Integer page, Integer size) {
+        return videoService.getVideosByCategory(categoryId,page,size);
     }
 }

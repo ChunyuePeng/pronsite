@@ -25,7 +25,10 @@
     ================================================== -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-    <link href="//vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet">
+    <link href="assets/js/video-js/video-js.css" rel="stylesheet">
+    <script>
+        // videojs.options.flash.swf = "assets/js/video-js/video-js.swf"
+    </script>
 </head>
 
 
@@ -616,13 +619,12 @@
                             <span class="icon-feather-x btn-box-close"
                                   uk-toggle="target: #video-box ; cls: video-resized-hedden uk-animation-slide-left"></span>
 
-                        <div class="embed-video">
-                            <!--<iframe id="iframe" src="" frameborder="0"-->
-                                    <!--uk-video="automute: true" allowfullscreen uk-responsive></iframe>-->
-                            <video id="myvideo" width='500' height="250" class="video-js vjs-default-skin vjs-big-play-centered" controls preload="auto"  data-setup='{}'>
-                                <source id="source" src="http://192.168.1.8:9999/hls/11/movie.m3u8"  type="application/x-mpegURL">
+                        <div class="embed-video" id="embed-video">
+                            <video id="live-stream" class="video-js vjs-big-play-centered vjs-fluid"
+                                   controls autoplay preload="auto"
+                                   poster="assets/images/videodemo.png"
+                            >
                             </video>
-                            <!--<video id="myvideo"></video>-->
                         </div>
                     </div>
 
@@ -684,26 +686,14 @@
 
 
                         <h2> Description</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisici elit, sed eiusmod
-                            tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                            nostrud
-                            exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat.</p>
-
+                        <p id="description">loading</p>
 
                         <div class="about-ch-sec mb-lg-6">
                             <div class="abt-rw">
                                 <h4>Category : </h4>
-                                <ul>
-                                    <li><span>Education</span></li>
+                                <ul id="categories">
+
                                 </ul>
-                            </div>
-                            <div class="abt-rw">
-                                <h4>About : </h4>
-                                <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                    incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                    fugiat nulla pariatur </p>
                             </div>
                             <div class="abt-rw tgs">
                                 <h4>Tags : </h4>
@@ -720,123 +710,124 @@
                     </div>
 
                     <hr>
+<!--                    comments begin-->
+<!--                    <div class="comments mt-4">-->
+<!--                        <h3> Comments <span class="comments-amount">5210</span></h3>-->
 
-                    <div class="comments mt-4">
-                        <h3> Comments <span class="comments-amount">5210</span></h3>
+<!--                        <ul>-->
+<!--                            <li>-->
+<!--                                <div class="avatar"><img src="assets/images//avatars/avatar-1.jpg" alt="">-->
+<!--                                </div>-->
+<!--                                <div class="comment-content">-->
+<!--                                    <div class="comment-by">Jonathan Madano <span>Student</span>-->
+<!--                                        <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>-->
+<!--                                            Reply</a>-->
+<!--                                    </div>-->
+<!--                                    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam-->
+<!--                                        nonummy-->
+<!--                                        nibh-->
+<!--                                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi-->
+<!--                                        enim ad-->
+<!--                                        minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis-->
+<!--                                        nisl-->
+<!--                                        ut-->
+<!--                                        aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis-->
+<!--                                        eleifend-->
+<!--                                        option-->
+<!--                                        congue </p>-->
+<!--                                </div>-->
 
-                        <ul>
-                            <li>
-                                <div class="avatar"><img src="assets/images//avatars/avatar-1.jpg" alt="">
-                                </div>
-                                <div class="comment-content">
-                                    <div class="comment-by">Jonathan Madano <span>Student</span>
-                                        <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>
-                                            Reply</a>
-                                    </div>
-                                    <p> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                        nonummy
-                                        nibh
-                                        euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi
-                                        enim ad
-                                        minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis
-                                        nisl
-                                        ut
-                                        aliquip ex ea commodo consequat. Nam liber tempor cum soluta nobis
-                                        eleifend
-                                        option
-                                        congue </p>
-                                </div>
+<!--                                <ul>-->
+<!--                                    <li>-->
+<!--                                        <div class="avatar"><img src="assets/images/avatars/avatar-2.jpg" alt="">-->
+<!--                                        </div>-->
+<!--                                        <div class="comment-content">-->
+<!--                                            <div class="comment-by">Stella Johnson<span>Student</span>-->
+<!--                                                <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>-->
+<!--                                                    Reply</a>-->
+<!--                                            </div>-->
+<!--                                            <p> Nam liber tempor cum soluta nobis eleifend option congue ut-->
+<!--                                                laoreet-->
+<!--                                                dolore-->
+<!--                                                magna aliquam erat volutpat nihil imperdiet doming id quod mazim-->
+<!--                                                placerat-->
+<!--                                                facer possim assum. Lorem ipsum dolor sit amet</p>-->
+<!--                                        </div>-->
+<!--                                    </li>-->
+<!--                                    <li>-->
+<!--                                        <div class="avatar">-->
+<!--                                            <img src="assets/images/avatars/avatar-3.jpg" alt=""></div>-->
+<!--                                        <div class="comment-content">-->
 
-                                <ul>
-                                    <li>
-                                        <div class="avatar"><img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                        </div>
-                                        <div class="comment-content">
-                                            <div class="comment-by">Stella Johnson<span>Student</span>
-                                                <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>
-                                                    Reply</a>
-                                            </div>
-                                            <p> Nam liber tempor cum soluta nobis eleifend option congue ut
-                                                laoreet
-                                                dolore
-                                                magna aliquam erat volutpat nihil imperdiet doming id quod mazim
-                                                placerat
-                                                facer possim assum. Lorem ipsum dolor sit amet</p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="avatar">
-                                            <img src="assets/images/avatars/avatar-3.jpg" alt=""></div>
-                                        <div class="comment-content">
+<!--                                            <div class="comment-by">Adrian Mohani <span>Student</span>-->
+<!--                                                <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>-->
+<!--                                                    Reply</a>-->
+<!--                                            </div>-->
+<!--                                            <p>tempor cum soluta nobis eleifend option congue ut laoreet dolore-->
+<!--                                                magna-->
+<!--                                                aliquam erat volutpat.</p>-->
+<!--                                        </div>-->
 
-                                            <div class="comment-by">Adrian Mohani <span>Student</span>
-                                                <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>
-                                                    Reply</a>
-                                            </div>
-                                            <p>tempor cum soluta nobis eleifend option congue ut laoreet dolore
-                                                magna
-                                                aliquam erat volutpat.</p>
-                                        </div>
+<!--                                    </li>-->
+<!--                                </ul>-->
 
-                                    </li>
-                                </ul>
+<!--                            </li>-->
 
-                            </li>
+<!--                            <li>-->
+<!--                                <div class="avatar"><img src="assets/images/avatars/avatar-4.jpg" alt="">-->
+<!--                                </div>-->
+<!--                                <div class="comment-content">-->
 
-                            <li>
-                                <div class="avatar"><img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                </div>
-                                <div class="comment-content">
+<!--                                    <div class="comment-by">Alex Dolgove<span>Student</span>-->
+<!--                                        <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>-->
+<!--                                            Reply</a>-->
+<!--                                    </div>-->
+<!--                                    <p>Nam liber tempor cum soluta nobis eleifend option congue ut laoreet-->
+<!--                                        dolore-->
+<!--                                        magna-->
+<!--                                        aliquam erat volutpat nihil imperdiet doming id quod mazim placerat-->
+<!--                                        facer-->
+<!--                                        possim-->
+<!--                                        assum. Lorem ipsum dolor sit amet</p>-->
+<!--                                </div>-->
 
-                                    <div class="comment-by">Alex Dolgove<span>Student</span>
-                                        <a href="#" class="reply"><i class="icon-line-awesome-undo"></i>
-                                            Reply</a>
-                                    </div>
-                                    <p>Nam liber tempor cum soluta nobis eleifend option congue ut laoreet
-                                        dolore
-                                        magna
-                                        aliquam erat volutpat nihil imperdiet doming id quod mazim placerat
-                                        facer
-                                        possim
-                                        assum. Lorem ipsum dolor sit amet</p>
-                                </div>
+<!--                            </li>-->
 
-                            </li>
+<!--                        </ul>-->
 
-                        </ul>
+<!--                    </div>-->
 
-                    </div>
+<!--                    <div class="comments">-->
+<!--                        <h4>Your Comment </h4>-->
+<!--                        <ul>-->
+<!--                            <li>-->
+<!--                                <div class="avatar"><img src="assets/images/avatars/avatar-2.jpg" alt="">-->
+<!--                                </div>-->
+<!--                                <div class="comment-content">-->
+<!--                                    <form class="uk-grid-small" uk-grid>-->
+<!--                                        <div class="uk-width-1-2@s">-->
+<!--                                            <label class="uk-form-label">Name</label>-->
+<!--                                            <input class="uk-input" type="text" placeholder="Name">-->
+<!--                                        </div>-->
+<!--                                        <div class="uk-width-1-2@s">-->
+<!--                                            <label class="uk-form-label">Email</label>-->
+<!--                                            <input class="uk-input" type="text" placeholder="Email">-->
+<!--                                        </div>-->
+<!--                                        <div class="uk-width-1-1@s">-->
+<!--                                            <label class="uk-form-label">Comment</label>-->
+<!--                                            <textarea class="uk-textarea" placeholder="Enter Your Comments her..."-->
+<!--                                                      style=" height:160px"></textarea>-->
+<!--                                        </div>-->
+<!--                                        <div class="uk-grid-margin">-->
+<!--                                            <input type="submit" value="submit" class="button warning">-->
+<!--                                        </div>-->
+<!--                                    </form>-->
 
-                    <div class="comments">
-                        <h4>Your Comment </h4>
-                        <ul>
-                            <li>
-                                <div class="avatar"><img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                </div>
-                                <div class="comment-content">
-                                    <form class="uk-grid-small" uk-grid>
-                                        <div class="uk-width-1-2@s">
-                                            <label class="uk-form-label">Name</label>
-                                            <input class="uk-input" type="text" placeholder="Name">
-                                        </div>
-                                        <div class="uk-width-1-2@s">
-                                            <label class="uk-form-label">Email</label>
-                                            <input class="uk-input" type="text" placeholder="Email">
-                                        </div>
-                                        <div class="uk-width-1-1@s">
-                                            <label class="uk-form-label">Comment</label>
-                                            <textarea class="uk-textarea" placeholder="Enter Your Comments her..."
-                                                      style=" height:160px"></textarea>
-                                        </div>
-                                        <div class="uk-grid-margin">
-                                            <input type="submit" value="submit" class="button warning">
-                                        </div>
-                                    </form>
-
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+<!--                                </div>-->
+<!--                            </li>-->
+<!--                        </ul>-->
+<!--                    </div>-->
+<!--                    comments end-->
 
 
                 </div>
@@ -853,7 +844,7 @@
                     </div>
                     <div class="video-list-small uk-child-width-1-1@m uk-child-width-1-2@s" uk-grid>
 
-
+<!--                        推荐-->
                         <div>
                             <a href="#" class="video-post video-post-list">
                                 <!-- Blog Post Thumbnail -->
@@ -890,239 +881,6 @@
                             </a>
                         </div>
 
-                        <div>
-                            <a href="#" class="video-post video-post-list">
-                                <!-- Blog Post Thumbnail -->
-                                <div class="video-post-thumbnail">
-                                    <span class="video-post-count">2.7k</span>
-                                    <span class="video-post-time">40:00</span>
-                                    <span class="play-btn-trigger"></span>
-                                    <img src="assets/images/video-thumbal/1.png" alt="">
-                                </div>
-                                <!-- Blog Post Content -->
-                                <div class="video-post-content">
-                                    <h3> Learn how to create a PHP singleton class </h3>
-                                    <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                    <span class="video-post-user">Stella Johnson</span>
-                                    <span class="video-post-views">938k views</span>
-                                    <span class="video-post-date"> 3 weeks ago </span>
-                                    <!-- option menu -->
-                                    <span class="btn-option">
-                                            <i class="icon-feather-more-vertical"></i>
-                                        </span>
-                                    <div class="dropdown-option-nav"
-                                         uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
-                                        <ul>
-                                            <li><span> <i class="uil-history"></i> Watch Later</span></li>
-                                            <li><span> <i class="uil-bookmark"></i> Add Bookmark</span></li>
-                                            <li><span> <i class="uil-share-alt"></i> Share Your Friends</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div>
-                            <a href="#" class="video-post video-post-list">
-                                <!-- Blog Post Thumbnail -->
-                                <div class="video-post-thumbnail">
-                                    <span class="video-post-count">2.3M</span>
-                                    <span class="video-post-time">14:00</span>
-                                    <span class="play-btn-trigger"></span>
-                                    <img src="assets/images/video-thumbal/3.png" alt="">
-                                </div>
-                                <!-- Blog Post Content -->
-                                <div class="video-post-content">
-                                    <h3> Learn how to Create Laravel Package and .. </h3>
-                                    <img src="assets/images/avatars/avatar-5.jpg" alt="">
-                                    <span class="video-post-user">Alex Dolgove</span>
-                                    <span class="video-post-views">531k views</span>
-                                    <span class="video-post-date"> 2 weeks ago </span>
-                                    <!-- option menu -->
-                                    <span class="btn-option">
-                                            <i class="icon-feather-more-vertical"></i>
-                                        </span>
-                                    <div class="dropdown-option-nav"
-                                         uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
-                                        <ul>
-                                            <li><span> <i class="uil-history"></i> Watch Later</span></li>
-                                            <li><span> <i class="uil-bookmark"></i> Add Bookmark</span></li>
-                                            <li><span> <i class="uil-share-alt"></i> Share Your Friends</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div>
-                            <a href="#" class="video-post video-post-list">
-                                <!-- Blog Post Thumbnail -->
-                                <div class="video-post-thumbnail">
-                                    <span class="video-post-count">1.4M</span>
-                                    <span class="video-post-time">23:00</span>
-                                    <span class="play-btn-trigger"></span>
-                                    <img src="assets/images/video-thumbal/4.png" alt="">
-                                </div>
-                                <!-- Blog Post Content -->
-                                <div class="video-post-content">
-                                    <h3> Learn how to upload files using Laravel and .. </h3>
-                                    <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                    <span class="video-post-user">Adrian Mohani</span>
-                                    <span class="video-post-views">531k views</span>
-                                    <span class="video-post-date"> 2 weeks ago </span>
-                                    <!-- option menu -->
-                                    <span class="btn-option">
-                                            <i class="icon-feather-more-vertical"></i>
-                                        </span>
-                                    <div class="dropdown-option-nav"
-                                         uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
-                                        <ul>
-                                            <li><span> <i class="uil-history"></i> Watch Later</span></li>
-                                            <li><span> <i class="uil-bookmark"></i> Add Bookmark</span></li>
-                                            <li><span> <i class="uil-share-alt"></i> Share Your Friends</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-
-                        <div>
-                            <a href="#" class="video-post video-post-list">
-                                <!-- Blog Post Thumbnail -->
-                                <div class="video-post-thumbnail">
-                                    <span class="video-post-count">1.4M</span>
-                                    <span class="video-post-time">23:00</span>
-                                    <span class="play-btn-trigger"></span>
-                                    <img src="assets/images/video-thumbal/img-1.png" alt="">
-                                </div>
-
-                                <!-- Blog Post Content -->
-                                <div class="video-post-content">
-                                    <h3> Learn How-To Design & Prototype in Adobe XD Tutorial </h3>
-                                    <img src="assets/images/avatars/avatar-3.jpg" alt="">
-                                    <span class="video-post-user">Jonathan Madano</span>
-                                    <span class="video-post-views">531k views</span>
-                                    <span class="video-post-date"> 2 weeks ago </span>
-                                    <!-- option menu -->
-                                    <span class="btn-option">
-                                            <i class="icon-feather-more-vertical"></i>
-                                        </span>
-                                    <div class="dropdown-option-nav"
-                                         uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
-                                        <ul>
-                                            <li><span> <i class="uil-history"></i> Watch Later</span></li>
-                                            <li><span> <i class="uil-bookmark"></i> Add Bookmark</span></li>
-                                            <li><span> <i class="uil-share-alt"></i> Share Your Friends</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div>
-                            <a href="#" class="video-post video-post-list">
-                                <!-- Blog Post Thumbnail -->
-                                <div class="video-post-thumbnail">
-                                    <span class="video-post-count">2.7k</span>
-                                    <span class="video-post-time">40:00</span>
-                                    <span class="play-btn-trigger"></span>
-                                    <img src="assets/images/video-thumbal/img-3.png" alt="">
-                                </div>
-                                <!-- Blog Post Content -->
-                                <div class="video-post-content">
-                                    <h3> Learn How to Prototype Faster with Mockplus! in 2020 </h3>
-                                    <img src="assets/images/avatars/avatar-2.jpg" alt="">
-                                    <span class="video-post-user">Stella Johnson</span>
-                                    <span class="video-post-views">938k views</span>
-                                    <span class="video-post-date"> 3 weeks ago </span>
-                                    <!-- option menu -->
-                                    <span class="btn-option">
-                                            <i class="icon-feather-more-vertical"></i>
-                                        </span>
-                                    <div class="dropdown-option-nav"
-                                         uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
-                                        <ul>
-                                            <li><span> <i class="uil-history"></i> Watch Later</span></li>
-                                            <li><span> <i class="uil-bookmark"></i> Add Bookmark</span></li>
-                                            <li><span> <i class="uil-share-alt"></i> Share Your Friends</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div>
-                            <a href="#" class="video-post video-post-list">
-                                <!-- Blog Post Thumbnail -->
-                                <div class="video-post-thumbnail">
-                                    <span class="video-post-count">2.3M</span>
-                                    <span class="video-post-time">14:00</span>
-                                    <span class="play-btn-trigger"></span>
-                                    <img src="assets/images/video-thumbal/img-4.png" alt="">
-                                </div>
-                                <!-- Blog Post Content -->
-                                <div class="video-post-content">
-                                    <h3> Adobe XD Design Tutorial Website Landing Page </h3>
-                                    <img src="assets/images/avatars/avatar-5.jpg" alt="">
-                                    <span class="video-post-user">Alex Dolgove</span>
-                                    <span class="video-post-views">531k views</span>
-                                    <span class="video-post-date"> 2 weeks ago </span>
-                                    <!-- option menu -->
-                                    <span class="btn-option">
-                                            <i class="icon-feather-more-vertical"></i>
-                                        </span>
-                                    <div class="dropdown-option-nav"
-                                         uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
-                                        <ul>
-                                            <li><span> <i class="uil-history"></i> Watch Later</span></li>
-                                            <li><span> <i class="uil-bookmark"></i> Add Bookmark</span></li>
-                                            <li><span> <i class="uil-share-alt"></i> Share Your Friends</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div>
-                            <a href="#" class="video-post video-post-list">
-                                <!-- Blog Post Thumbnail -->
-                                <div class="video-post-thumbnail">
-                                    <span class="video-post-count">1.4M</span>
-                                    <span class="video-post-time">23:00</span>
-                                    <span class="play-btn-trigger"></span>
-                                    <img src="assets/images/video-thumbal/img-5.png" alt="">
-                                </div>
-                                <!-- Blog Post Content -->
-                                <div class="video-post-content">
-                                    <h3> Learn UI/UX Designing Latest Website In Adobe XD </h3>
-                                    <img src="assets/images/avatars/avatar-4.jpg" alt="">
-                                    <span class="video-post-user">Adrian Mohani</span>
-                                    <span class="video-post-views">531k views</span>
-                                    <span class="video-post-date"> 2 weeks ago </span>
-
-                                    <!-- option menu -->
-                                    <span class="btn-option">
-                                            <i class="icon-feather-more-vertical"></i>
-                                        </span>
-                                    <div class="dropdown-option-nav"
-                                         uk-dropdown="pos: bottom-right ;mode : hover ;animation: uk-animation-slide-bottom-small">
-                                        <ul>
-                                            <li><span> <i class="uil-history"></i> Watch Later</span></li>
-                                            <li><span> <i class="uil-bookmark"></i> Add Bookmark</span></li>
-                                            <li><span> <i class="uil-share-alt"></i> Share Your Friends</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
 
 
                     </div>
@@ -1206,128 +964,54 @@
 <script src="assets/js/server.js"></script>
 <script src="assets/js/axios.min.js"></script>
 <script src="assets/js/myaxios.js"></script>
-<!--<script src="assets/js/video.min.js"></script>-->
-<script src="assets/js/video.js?v=fc5104a2ab23"></script>
-<script src="assets/js/videojs-contrib-hls.js?v=c726b94b9923"></script>
-<!--<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>-->
-<!--<script src="assets/js/ckplayer.min.js"></script>-->
+<script src="assets/js/video-js/video.js"></script>
+<script src="assets/js/video-js/videojs-contrib-hls.min.js"></script>
 <script>
-    var myPlayer = videojs('myvideo',{
-        bigPlayButton : false,
-        textTrackDisplay : false,
-        posterImage: true,
-        errorDisplay : false,
-        controlBar : false
-    },function(){
-        console.log(this)
-        this.on('loadedmetadata',function(){
-            console.log('loadedmetadata');
-            //加载到元数据后开始播放视频
-            startVideo();
-        })
+    videojs.options.flash.swf = "assets/js/video-js/video-js.swf";
+</script>
+<script>
 
-        this.on('ended',function(){
-            console.log('ended')
-        })
-        this.on('firstplay',function(){
-            console.log('firstplay')
-        })
-        this.on('loadstart',function(){
-            //开始加载
-            console.log('loadstart')
-        })
-        this.on('loadeddata',function(){
-            console.log('loadeddata')
-        })
-        this.on('seeking',function(){
-            //正在去拿视频流的路上
-            console.log('seeking')
-        })
-        this.on('seeked',function(){
-            //已经拿到视频流,可以播放
-            console.log('seeked')
-        })
-        this.on('waiting',function(){
-            console.log('waiting')
-        })
-        this.on('pause',function(){
-            console.log('pause')
-        })
-        this.on('play',function(){
-            console.log('play')
-        })
-
-    });
-
-    var isVideoBreak;
-    function startVideo() {
-
-        myPlayer.play();
-
-        //微信内全屏支持
-        document.getElementById('myvideo').style.width = window.screen.width + "px";
-        document.getElementById('myvideo').style.height = window.screen.height + "px";
-
-
-        //判断开始播放视频，移除高斯模糊等待层
-        var isVideoPlaying = setInterval(function(){
-            var currentTime = myPlayer.currentTime();
-            if(currentTime > 0){
-                $('.vjs-poster').remove();
-                clearInterval(isVideoPlaying);
+    var u = window.location.href;
+    var videoId = u.split("?videoId=")[1];
+    if (videoId != undefined && videoId != '') {
+        my_axios({
+            method: "get",
+            url: "/video/getVideoInfo?videoId=" + videoId
+        }).then(function (response) {
+            console.log(response.data);
+            $('#description').html(response.data.description);
+            var categoryHtml = '';
+            var categories = response.data.categories;
+            for (let i = 0; i < categories.length; i++) {
+                categoryHtml += '\r\n'+ "<li><a href=\"#\" title=\"\">"+categories[i].name+"</a></li>"
             }
-        },200)
-
-        //判断视频是否卡住，卡主3s重新load视频
-        var lastTime = -1,
-            tryTimes = 0;
-
-        clearInterval(isVideoBreak);
-        isVideoBreak = setInterval(function(){
-            var currentTime = myPlayer.currentTime();
-            console.log('currentTime'+currentTime+'lastTime'+lastTime);
-
-            if(currentTime == lastTime){
-                //此时视频已卡主3s
-                //设置当前播放时间为超时时间，此时videojs会在play()后把currentTime设置为0
-                myPlayer.currentTime(currentTime+10000);
-                myPlayer.play();
-
-                //尝试5次播放后，如仍未播放成功提示刷新
-                if(++tryTimes > 5){
-                    alert('您的网速有点慢，刷新下试试');
-                    tryTimes = 0;
-                }
-            }else{
-                lastTime = currentTime;
-                tryTimes = 0;
+            $('#categories').html(categoryHtml);
+            var src = response.data.videoPath;
+            var type = '';
+            var split = src.split('.');
+            var vt = split[split.length-1];
+            if (vt == 'm3u8'){
+                type = 'application/x-mpegURL';
+            }else {
+                type = 'video/'+vt;
             }
-        },3000)
-
+            src =
+                'https://hqcrm.oss-cn-shenzhen.aliyuncs.com/cloudRecord/44a8cc12038c464f96ad204b1981ee05/3ccd283e9d42022539df549425c11d11_255547796.m3u8';
+            type = 'application/x-mpegURL';
+            var player = videojs('live-stream', {
+                fluid: true,
+                sources: [{
+                    src: src,
+                    type: type
+                }]
+            });
+            player.on(['loadstart', 'play', 'playing', 'firstplay', 'pause', 'ended', 'adplay', 'adplaying', 'adfirstplay', 'adpause', 'adended', 'contentplay', 'contentplaying', 'contentfirstplay', 'contentpause', 'contentended', 'contentupdate'], function (e) {
+                console.warn('VIDEOJS player event: ', e.type);
+            });
+        }).catch(function (reason) {
+            console.log(reason);
+        })
     }
-
-    // var u = window.location.href;
-    // var videoId = u.split("?videoId=")[1];
-    // if (videoId != undefined && videoId != '') {
-    //     my_axios({
-    //         method: "get",
-    //         url: "/video/getPlayPath?videoId=" + videoId
-    //     }).then(function (response) {
-    //         //document.getElementById("iframe").src = response.data;
-    //         console.log(response.data)
-    //         document.getElementById("source").src= response.data
-    //         var myVideo = videojs('myvideo',{
-    //             bigPlayButton : true,
-    //             textTrackDisplay : false,
-    //             posterImage: false,
-    //             errorDisplay : false,
-    //         })
-    //         myVideo.play() // 视频播放
-    //         myVideo.pause() // 视频暂停
-    //     }).catch(function (reason) {
-    //         console.log(reason);
-    //     })
-    // }
 
 </script>
 

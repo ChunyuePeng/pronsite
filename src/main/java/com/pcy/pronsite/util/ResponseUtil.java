@@ -1,6 +1,7 @@
 package com.pcy.pronsite.util;
 
 
+import com.pcy.pronsite.dao.entity.Video;
 import org.springframework.data.domain.Page;
 
 import java.util.HashMap;
@@ -112,5 +113,16 @@ public class ResponseUtil {
 
     public static Object unauthz() {
         return fail(506, "无操作权限");
+    }
+
+    public static Object okList(Page<Video> page) {
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("errno", 0);
+        data.put("list", page.getContent());
+        data.put("total", page.getTotalElements());
+        data.put("page", page.getNumber());
+        data.put("limit", page.getSize());
+        data.put("pages", page.getTotalPages());
+        return data;
     }
 }

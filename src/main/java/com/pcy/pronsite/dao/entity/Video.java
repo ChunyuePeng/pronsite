@@ -1,9 +1,9 @@
 package com.pcy.pronsite.dao.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Video {
@@ -21,13 +21,25 @@ public class Video {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private String videoPath;
     private String coverImgPath;
-    private int uploadUser;
+    private Integer uploadUser;
     private boolean privateVideo;
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinTable(name="video_category",joinColumns={@JoinColumn(name="videoId")},inverseJoinColumns={@JoinColumn(name=
+            "categoryId")})
+    Set<Category> categories;
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
+    }
 
     public boolean isPrivateVideo() {
         return privateVideo;
@@ -37,11 +49,11 @@ public class Video {
         this.privateVideo = privateVideo;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -77,11 +89,11 @@ public class Video {
         this.coverImgPath = coverImgPath;
     }
 
-    public int getUploadUser() {
+    public Integer getUploadUser() {
         return uploadUser;
     }
 
-    public void setUploadUser(int uploadUser) {
+    public void setUploadUser(Integer uploadUser) {
         this.uploadUser = uploadUser;
     }
 }

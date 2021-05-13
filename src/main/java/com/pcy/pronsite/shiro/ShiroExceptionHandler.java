@@ -5,6 +5,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authz.AuthorizationException;
+import org.apache.shiro.authz.UnauthenticatedException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -17,9 +18,9 @@ public class ShiroExceptionHandler {
 
     private final Log logger = LogFactory.getLog(ShiroExceptionHandler.class);
 
-    @ExceptionHandler(AuthenticationException.class)
+    @ExceptionHandler(UnauthenticatedException.class)
     @ResponseBody
-    public Object unauthenticatedHandler(AuthenticationException e) {
+    public Object unauthenticatedHandler(UnauthenticatedException e) {
         logger.warn(e.getMessage(), e);
         return ResponseUtil.unlogin();
     }
